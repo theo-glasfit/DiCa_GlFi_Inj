@@ -25,5 +25,15 @@ jobs:
           echo "Preview of minified file:"
           head -c 200 dcall.min.js || echo "[File empty]"
 
+      - name: Commit and push minified file
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add dcall.min.js
+          git commit -m "Auto-minified dcall.js"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Trigger server update
         run: curl -X POST "${{ secrets.SERVER_ADDRESS }}supersecretdoorcode=${{ secrets.SERVER_SECRET }}"
