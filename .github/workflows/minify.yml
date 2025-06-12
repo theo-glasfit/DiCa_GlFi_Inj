@@ -20,4 +20,4 @@ jobs:
         run: terser dcall.js -o dcall.min.js --compress --mangle
 
       - name: Trigger server update
-        run: curl -X POST "https://glasfitplk.x10.mx/update.php?supersecretdoorcode=${{ secrets.SERVER_SECRET }}"
+        run: curl -X POST "${{ secrets.SERVER_ADDRESS }}supersecretdoorcode=${{ secrets.SERVER_SECRET }}"
