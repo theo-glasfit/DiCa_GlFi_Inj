@@ -1,32 +1,23 @@
-name: Minify JS on Push
+name: Minify and Trigger Server
 
 on:
   push:
     branches: [main]
 
 jobs:
-  minify-js:
+  minify:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install Terser
-        run: npm install terser -g
+      - name: Setup Node and Terser
+        run: |
+          sudo apt-get install -y nodejs npm
+          npm install -g terser
 
       - name: Minify JS
         run: terser dcall.js -o dcall.min.js --compress --mangle
 
-      - name: Commit and push minified file
-        run: |
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
-          git add dcall.min.js
-          git commit -m "Auto-minified dcall.js"
-          git push
+      - name: Trigger server update
+        run: curl -X POST "https://glasfitplk.x10.mx/update.php?supersecretdoorcode=${{ secrets.SERVER_SECRET }}"
