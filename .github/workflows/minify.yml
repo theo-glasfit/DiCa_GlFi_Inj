@@ -16,6 +16,19 @@ jobs:
           sudo apt-get install -y nodejs npm
           npm install -g terser
 
+      - name: Check original JS file size
+        run: |
+          echo "Original file size:"
+          stat --format="%s bytes" dcall.js
+          cat dcall.js
+
+      - name: Abort if source file is empty
+        run: |
+          if [ ! -s dcall.js ]; then
+            echo "ERROR: Source file is empty!"
+            exit 1
+          fi
+
       - name: Minify JS
         run: terser dcall.js -o dcall.min.js --compress --mangle
 
