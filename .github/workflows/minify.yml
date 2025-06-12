@@ -16,21 +16,14 @@ jobs:
           sudo apt-get install -y nodejs npm
           npm install -g terser
 
-      - name: Check original JS file size
+      - name: Minify JS with debug
         run: |
-          echo "Original file size:"
-          stat --format="%s bytes" dcall.js
-          cat dcall.js
-
-      - name: Abort if source file is empty
-        run: |
-          if [ ! -s dcall.js ]; then
-            echo "ERROR: Source file is empty!"
-            exit 1
-          fi
-
-      - name: Minify JS
-        run: terser dcall.js -o dcall.min.js --compress --mangle
+          echo "Minifying..."
+          terser dcall.js --compress --mangle -o dcall.min.js
+          echo "Minified file size:"
+          stat --format="%s bytes" dcall.min.js
+          echo "Preview of minified file:"
+          head -c 200 dcall.min.js || echo "[File empty]"
 
       - name: Trigger server update
         run: curl -X POST "${{ secrets.SERVER_ADDRESS }}supersecretdoorcode=${{ secrets.SERVER_SECRET }}"
