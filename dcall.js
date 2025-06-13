@@ -345,8 +345,8 @@ function ToggleHamburger(_AuthEmail) {
 
     if (Doc.Elements.Hamburger.classList.contains("active")) {
         ProcessWhatsapp();
-        Doc.Elements.PrintClaimLink.href = "https://" + Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=claim";
-        Doc.Elements.PrintClaimReport.href = "https://" + Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=worksorder";
+        Doc.Elements.PrintClaimLink.href = Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=claim";
+        Doc.Elements.PrintClaimReport.href = Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=worksorder";
         ProcessAuthMail(_AuthEmail);
         ProcessInquiryMail();
     }
