@@ -53,7 +53,8 @@ Doc = {
         Status: document.getElementById('Status'),
         jsbtn: document.getElementById('JSStateChange')
     },
-    User: document.querySelector('HEADER > div:nth-of-type(3)').innerHTML.split('\n')[2]
+    User: document.querySelector('HEADER > div:nth-of-type(3)').innerHTML.split('\n')[2],
+    URL: window.location.origin + window.location.pathname;
 };
 
 // Event listener: Right click on notes.
@@ -344,8 +345,8 @@ function ToggleHamburger(_AuthEmail) {
 
     if (Doc.Elements.Hamburger.classList.contains("active")) {
         ProcessWhatsapp();
-        Doc.Elements.PrintClaimLink.href = "https://" + window.location.href.hostname + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=claim";
-        Doc.Elements.PrintClaimReport.href = "https://" + window.location.href.hostname + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=worksorder";
+        Doc.Elements.PrintClaimLink.href = "https://" + Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=claim";
+        Doc.Elements.PrintClaimReport.href = "https://" + Doc.URL + "/DPSWeb2/Report/_claim/" + Doc.Claim.REF + "?reporttype=worksorder";
         ProcessAuthMail(_AuthEmail);
         ProcessInquiryMail();
     }
