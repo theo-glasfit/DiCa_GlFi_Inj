@@ -345,8 +345,8 @@ function ToggleHamburger(_AuthEmail) {
 
     if (Doc.Elements.Hamburger.classList.contains("active")) {
         ProcessWhatsapp();
-        Doc.Elements.PrintClaimLink.href = Doc.URL + "?reporttype=claim";
-        Doc.Elements.PrintClaimReport.href = Doc.URL + "?reporttype=worksorder";
+        Doc.Elements.PrintClaimLink.href = Doc.URL.replace("Branch/Claims/Edit", "Report/_claim" + "?reporttype=claim";
+        Doc.Elements.PrintClaimReport.href = Doc.URL.replace("Branch/Claims/Edit", "Report/_claim" + "?reporttype=worksorder";
         ProcessAuthMail(_AuthEmail);
         ProcessInquiryMail();
     }
