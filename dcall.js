@@ -54,7 +54,7 @@ Doc = {
         jsbtn: document.getElementById('JSStateChange')
     },
     User: document.querySelector('HEADER > div:nth-of-type(3)').innerHTML.split('\n')[2],
-    URL: window.location.origin + window.location.pathname;
+    URL: window.location.origin + window.location.pathname
 };
 
 // Event listener: Right click on notes.
