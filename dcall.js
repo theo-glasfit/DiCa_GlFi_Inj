@@ -357,7 +357,7 @@ function GetBuyoutsLink(_BuyOuts, _Dealers) {
     let Address = "";
     let CC = _BuyOuts;
     let Subject = "REF " + Doc.Claim.REF;
-    let Body = "Good day.\n\nI hope you are well.\nPlease quote me on glass for the following positoins: " + Doc.Vehicle.WorkDescription + "\nIt is for a " + Doc.Vehicle.Make + ' with VIN: ' + Doc.Vehicle.VIN + "\n\nThanx in advance.";
+    let Body = "Good day.\n\nI hope you are well.\nPlease quote me on glass for the following positions: " + Doc.Vehicle.WorkDescription + "\nIt is for a " + Doc.Vehicle.Make + ' with VIN: ' + Doc.Vehicle.VIN + "\n\nThanx in advance.";
     let Result = "";
     
     Address = _Dealers[Doc.Vehicle.Make]
