@@ -59,7 +59,7 @@ Doc = {
 };
 
 if (Doc.Vehicle.VIN != "") {
-    Doc.Buyouts_Address = GetAuthMail(Doc.Vehicle.Make);
+    GetAuthMail(Doc.Vehicle.Make);
 };
 
 // Event listener: Right click on notes.
@@ -404,8 +404,8 @@ function GetAuthMail(vehicleMake) {
   })
   .then(email => {
     if (email) {
-      console.log('Email address:', email);
-      return email;
+        Doc.Buyouts_Address = email;
+        console.log('Mara? Email address:', email);
     }
   })
   .catch(error => {
