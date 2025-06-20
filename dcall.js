@@ -54,7 +54,12 @@ Doc = {
         jsbtn: document.getElementById('JSStateChange')
     },
     User: document.querySelector('HEADER > div:nth-of-type(3)').innerHTML.split('\n')[2],
-    URL: window.location.origin + window.location.pathname
+    URL: window.location.origin + window.location.pathname,
+    Buyouts_Address: ''
+};
+
+if (Doc.Vehicle.VIN != "") {
+    Doc.Buyouts_Address = GetAuthMail(Doc.Vehicle.Make);
 };
 
 // Event listener: Right click on notes.
@@ -354,17 +359,15 @@ function ToggleHamburger(_AuthEmail) {
 
 // Declare: Build buyouts link.
 function GetBuyoutsLink(_BuyOuts) {
-    let Address = "";
     let CC = _BuyOuts;
     let Subject = "REF " + Doc.Claim.REF;
     let Body = "Good day.\n\nI hope you are well.\nPlease quote me on glass for the following positions: " + Doc.Vehicle.WorkDescription + "\nIt is for a " + Doc.Vehicle.Make + ' with VIN: ' + Doc.Vehicle.VIN + "\n\nThanx in advance.";
     let Result = "";
     
-    Address = GetAuthMail(Doc.Vehicle.Make);
-    if (Address == CC) {
-        Result = "mailto:" + Address + "?Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
+    if (Doc.Buyouts_Address == CC) {
+        Result = "mailto:" + Doc.Buyouts_Address + "?Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
     } else {
-        Result = "mailto:" + Address + "?cc=" + CC + "&Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
+        Result = "mailto:" + Doc.Buyouts_Address + "?cc=" + CC + "&Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
     }
     return Result;
 };
