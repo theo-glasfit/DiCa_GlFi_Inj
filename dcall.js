@@ -385,7 +385,7 @@ ProcessNotes();
 
 // Request auth address
 function GetAuthMail(vehicleMake) {
-    fetch(_Server_Address + '/get_email.address', {
+  fetch(_Server_Address + '/get_email.address', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -409,28 +409,3 @@ function GetAuthMail(vehicleMake) {
     console.error('Error fetching email:', error);
   });
 }
-
-    
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            make: vehicleMake
-        })
-    })
-    .then(response => {
-        if (response.status === 204) {
-            return "No_Mail";
-        }
-    return response.text();
-    })
-    .then(email => {
-        if (email) {
-            return email;
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-};
