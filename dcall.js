@@ -360,8 +360,7 @@ function GetBuyoutsLink(_BuyOuts) {
     let Body = "Good day.\n\nI hope you are well.\nPlease quote me on glass for the following positions: " + Doc.Vehicle.WorkDescription + "\nIt is for a " + Doc.Vehicle.Make + ' with VIN: ' + Doc.Vehicle.VIN + "\n\nThanx in advance.";
     let Result = "";
     
-    Address = emails[Doc.Vehicle.Make];
-    Address = transformString(Address);
+    Address = GetAuthMail(Doc.Vehicle.Make);
     if (Address == CC) {
         Result = "mailto:" + Address + "?Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
     } else {
@@ -383,3 +382,30 @@ function GetMSG(Top, Mid, Bottom) {
 // Change the JS menu to be visible.
 Doc.Elements.HamburgerContainer.style.display = "flex";
 ProcessNotes();
+
+// Request auth address
+function GetAuthMail(vehicleMake) {
+    fetch(_Server_Address + '/get_email.address', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            make: vehicleMake
+        })
+    })
+    .then(response => {
+        if (response.status === 204) {
+            return "No_Mail";
+        }
+    return response.text();
+    })
+    .then(email => {
+        if (email) {
+            return email;
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+};
