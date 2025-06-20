@@ -224,7 +224,6 @@ function ProcessInquiryMail() {
     if ((Doc.Vehicle.VIN !== "") && (Doc.Vehicle.Make !== "")) {
         Doc.Elements.InquiryMailField.style = "display: block; background-color: rgb(217 217 217)";
         Doc.Elements.InquiryMailLink.href = GetBuyoutsLink(_BuyOutsAddress);
-transformString(string)
 }};
 
 // Declare: Copy text to memory.
