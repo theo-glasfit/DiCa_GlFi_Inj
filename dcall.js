@@ -405,7 +405,6 @@ function GetAuthMail(vehicleMake) {
   .then(email => {
     if (email) {
         Doc.Buyouts_Address = email;
-        console.log('Mara? Email address:', email);
     }
   })
   .catch(error => {
