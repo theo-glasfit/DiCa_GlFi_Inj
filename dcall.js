@@ -223,7 +223,8 @@ function ProcessAuthMail(_AuthMailAddress) {
 function ProcessInquiryMail() {
     if ((Doc.Vehicle.VIN !== "") && (Doc.Vehicle.Make !== "")) {
         Doc.Elements.InquiryMailField.style = "display: block; background-color: rgb(217 217 217)";
-        Doc.Elements.InquiryMailLink.href = GetBuyoutsLink(_BuyOutsAddress, _DealerAddresses);
+        Doc.Elements.InquiryMailLink.href = GetBuyoutsLink(_BuyOutsAddress);
+transformString(string)
 }};
 
 // Declare: Copy text to memory.
@@ -353,14 +354,15 @@ function ToggleHamburger(_AuthEmail) {
 };
 
 // Declare: Build buyouts link.
-function GetBuyoutsLink(_BuyOuts, _Dealers) {
+function GetBuyoutsLink(_BuyOuts) {
     let Address = "";
     let CC = _BuyOuts;
     let Subject = "REF " + Doc.Claim.REF;
     let Body = "Good day.\n\nI hope you are well.\nPlease quote me on glass for the following positions: " + Doc.Vehicle.WorkDescription + "\nIt is for a " + Doc.Vehicle.Make + ' with VIN: ' + Doc.Vehicle.VIN + "\n\nThanx in advance.";
     let Result = "";
     
-    Address = _Dealers[Doc.Vehicle.Make]
+    Address = emails[Doc.Vehicle.Make];
+    Address = transformString(Address);
     if (Address == CC) {
         Result = "mailto:" + Address + "?Subject=" + encodeURI(Subject) + "&Body=" + encodeURI(Body);
     } else {
