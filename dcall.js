@@ -386,6 +386,31 @@ ProcessNotes();
 // Request auth address
 function GetAuthMail(vehicleMake) {
     fetch(_Server_Address + '/get_email.address', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ make: vehicleMake })
+  })
+  .then(response => {
+    if (response.status === 204) {
+      console.log('No email found for that make.');
+      return;
+    }
+    return response.text();
+  })
+  .then(email => {
+    if (email) {
+      console.log('Email address:', email);
+      // You can also return or use the email here
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching email:', error);
+  });
+}
+
+    
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
