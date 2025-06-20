@@ -402,7 +402,7 @@ function GetAuthMail(vehicleMake) {
   .then(email => {
     if (email) {
       console.log('Email address:', email);
-      // You can also return or use the email here
+      return email;
     }
   })
   .catch(error => {
