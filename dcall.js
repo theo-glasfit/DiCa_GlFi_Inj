@@ -210,7 +210,7 @@ function ProcessWhatsapp() {
 }}};
 
 // Declare: Build auth mail link.
-function ProcessAuthMail(_AuthMailAddress) {
+function ProcessAuthMail(_AuthAddress) {
     let Count = 0;
     Array.from(Doc.Elements.ItemsGrid).forEach(function (pcf) {
         if ((pcf.innerHTML == "FY20000") || (pcf.innerHTML == "FY1000000 ") || (pcf.innerHTML == "FY2000000")) {
@@ -218,7 +218,7 @@ function ProcessAuthMail(_AuthMailAddress) {
     }});
     if (Count == 1) {
         Doc.Elements.AuthMailInquiry.style = "display: block; background-color: rgb(217 217 217)";
-        Doc.Elements.AuthMailLink.href = "mailto:" + _AuthMailAddress + "?Subject=REF%20" + Doc.Claim.REF + "&Body=Good%20day.%0AI%20hope%20you%20are%20well.%0A%0APlease%20find%20attached%20a%20FY%20quotation%20for%20pricing%20and%20authorisation.%0AThe%20quotation%20is%20also%20uploaded%20on%20the%20claim%20comms%20for%20your%20reference.";
+        Doc.Elements.AuthMailLink.href = "mailto:" + _AuthAddress + "?Subject=REF%20" + Doc.Claim.REF + "&Body=Good%20day.%0AI%20hope%20you%20are%20well.%0A%0APlease%20find%20attached%20a%20FY%20quotation%20for%20pricing%20and%20authorisation.%0AThe%20quotation%20is%20also%20uploaded%20on%20the%20claim%20comms%20for%20your%20reference.";
     } else if (Count == 0) {
         Doc.Elements.AuthMailInquiry.style = "display: none";
         Doc.Elements.AuthMailLink.href = "#";
@@ -344,7 +344,7 @@ if (Doc.Claim.Type == "Unit") {
 };
 
 // Declare: Toggle hamburger menu.
-function ToggleHamburger(_AuthEmail) {
+function ToggleHamburger(_AuthMailAddress) {
     Doc.Elements.Hamburger.classList.toggle("active");
     Doc.Elements.HamburgerMenu.classList.toggle("active");
 
@@ -352,7 +352,7 @@ function ToggleHamburger(_AuthEmail) {
         ProcessWhatsapp();
         Doc.Elements.PrintClaimLink.href = Doc.URL.replace("Branch/Claims/Edit", "Report/_claim") + "?reporttype=claim";
         Doc.Elements.PrintClaimReport.href = Doc.URL.replace("Branch/Claims/Edit", "Report/_claim") + "?reporttype=worksorder";
-        ProcessAuthMail(_AuthEmail);
+        ProcessAuthMail(_AuthMailAddress);
         ProcessInquiryMail();
     }
 };
