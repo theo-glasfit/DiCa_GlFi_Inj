@@ -411,3 +411,5 @@ function GetAuthMail(vehicleMake) {
     console.error('Error fetching email:', error);
   });
 }
+
+// Added comment to get file commited and updated.
