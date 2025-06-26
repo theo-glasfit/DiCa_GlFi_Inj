@@ -412,4 +412,6 @@ function GetAuthMail(vehicleMake) {
   });
 }
 
-// Added comment to get file commited and updated.
+finction LogToConsole(variable) {
+    console.log(variable);
+}
