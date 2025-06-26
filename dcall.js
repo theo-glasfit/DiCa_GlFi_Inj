@@ -412,6 +412,6 @@ function GetAuthMail(vehicleMake) {
   });
 }
 
-finction LogToConsole(variable) {
+function LogToConsole(variable) {
     console.log(variable);
 }
